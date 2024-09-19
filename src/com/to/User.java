@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 
-@Table(name="user_table")
+@Table(name="user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // it will generate ID automatically everytime we try to insert

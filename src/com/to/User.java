@@ -1,14 +1,14 @@
 package com.to;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 
 @Table
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // it will generate ID automatically everytime we try to insert
+    @Column(name = "userID")
     private int userID;
     private String userName;
     private String department;
@@ -20,8 +20,7 @@ public class User {
 
     }
 
-    public User(int userID, String userName, String department, String position, int age) {
-        this.userID = userID;
+    public User(String userName, String department, String position, int age) {
         this.userName = userName;
         this.department = department;
         this.position = position;

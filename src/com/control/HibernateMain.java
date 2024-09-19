@@ -36,12 +36,18 @@ public class HibernateMain {
 //           session.save(user2);
 //           session.save(user3);
 
-           // print info of first existed objet
-           User u = session.get(User.class, 11);
-           System.out.println("The user's details: " + u);
+//           // print info of first existed objet
+//           User u = session.get(User.class, 11);
+//           System.out.println("The user's details: " + u);
+//
+//           // delete object from the user table
+//           session.delete(u);
 
-           // delete object from the user table
-           session.delete(u);
+           // Demonstrate ID auto-generation by leaving the userID field empty
+           User user1 = new User("Windsor", "Accounting", "Accountant", 27);
+           User user2 = new User("Will", "Human Resource", "Manager", 45);
+           session.save(user1);
+           session.save(user2);
 
            // commit will help to complete the changes in the table
            transaction.commit();

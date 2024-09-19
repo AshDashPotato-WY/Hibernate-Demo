@@ -1,6 +1,8 @@
 package com.control;
 
-import com.to.User;
+import com.to.Department;
+import com.to.Employee;
+import com.to.Task;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -14,7 +16,9 @@ public class HibernateMain {
     public static void main(String[] args) {
        try {
            Configuration configuration = new Configuration().configure();
-           configuration.addAnnotatedClass(User.class);
+           configuration.addAnnotatedClass(Employee.class);
+           configuration.addAnnotatedClass(Department.class);
+           configuration.addAnnotatedClass(Task.class);
            StandardServiceRegistryBuilder builder =
                    new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
            // create a SessionFactory from cfg.xml
@@ -64,15 +68,51 @@ public class HibernateMain {
 //           session.save(user7);
 //           session.save(user8);
 
-            // use HQL to do selection
-           String hql = "from User where department=:department order by userName desc";
-            Query query = session.createQuery(hql);
-            query.setParameter("department", "Web");
-            List<User> userList = query.list();
-            System.out.println("User details");
-            for (User user: userList) {
-                System.out.println(user);
-            }
+//            // use HQL to do selection
+//           String hql = "from User where department=:department order by userName desc";
+//            Query query = session.createQuery(hql);
+//            query.setParameter("department", "Web");
+//            List<User> userList = query.list();
+//            System.out.println("User details");
+//            for (User user: userList) {
+//                System.out.println(user);
+//            }
+
+           Task task1 = new Task("Meeting");
+           Task task2 = new Task("Out of Office");
+           Task task3 = new Task("Working");
+           Task task4 = new Task("In Office");
+           Task task5 = new Task("On Call");
+
+           Department department1 = new Department("Sales");
+           Employee employee1 = new Employee("Rob", department1, "Sales person", 35);
+           Employee employee2 = new Employee("Lily", department1, "Sales person", 32);
+
+           Department department2 = new Department("Accounting");
+           Employee employee3 = new Employee("Alice", department2, "CPA", 33);
+           Employee employee4 = new Employee("Sky", department1, "Accountant", 24);
+
+           employee1.getTaskList().add(task1);
+           employee2.getTaskList().add(task2);
+
+           employee3.getTaskList().add(task5);
+           employee3.getTaskList().add(task2);
+           employee3.getTaskList().add(task1);
+
+           employee4.getTaskList().add(task4);
+           employee4.getTaskList().add(task3);
+
+           session.save(task1);
+           session.save(task2);
+           session.save(task3);
+           session.save(task4);
+           session.save(task5);
+           session.save(department1);
+           session.save(department2);
+           session.save(employee1);
+           session.save(employee2);
+           session.save(employee3);
+           session.save(employee4);
 
            // commit will help to complete the changes in the table
            transaction.commit();

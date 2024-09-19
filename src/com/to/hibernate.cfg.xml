@@ -32,10 +32,12 @@
         <property name="format_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
 
         <!-- We need to provide the exact mapping file
             which we have created earlier -->
-        <mapping class="com.to.User" />
+        <mapping class="com.to.Employee" />
+        <mapping class="com.to.Department" />
+        <mapping class="com.to.Task" />
     </session-factory>
 </hibernate-configuration>

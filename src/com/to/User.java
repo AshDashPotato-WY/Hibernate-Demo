@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 
 @Entity
 
-@Table
+@Table(name="user_table")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // it will generate ID automatically everytime we try to insert
     @Column(name = "userID")
     private int userID;
+    @Column(nullable = false, name="first_name")
     private String userName;
     private String department;
     private String position;

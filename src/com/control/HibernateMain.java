@@ -20,21 +20,21 @@ public class HibernateMain {
            Session session = factory.openSession();
            // begin a transaction to perform any CRUD operation
            Transaction transaction = session.beginTransaction();
-           // create a user object
-           User user1 = new User(11, "Alice", "Accounting", "Accountant", 25);
-           // create another user object
-           User user2 = new User();
-           user2.setUserID(12);
-           user2.setUserName("Bob");
-           user2.setDepartment("Sales");
-           user2.setPosition("Sales person");
-           user2.setAge(34);
-           // create 3rd user object
-           User user3 = new User(13, "Paige", "Accounting", "CPA", 30);
-           // Just a save statement which automatically creates an insert statement
-           session.save(user1);
-           session.save(user2);
-           session.save(user3);
+//           // create a user object
+//           User user1 = new User(11, "Alice", "Accounting", "Accountant", 25);
+//           // create another user object
+//           User user2 = new User();
+//           user2.setUserID(12);
+//           user2.setUserName("Bob");
+//           user2.setDepartment("Sales");
+//           user2.setPosition("Sales person");
+//           user2.setAge(34);
+//           // create 3rd user object
+//           User user3 = new User(13, "Paige", "Accounting", "CPA", 30);
+//           // Just a save statement which automatically creates an insert statement
+//           session.save(user1);
+//           session.save(user2);
+//           session.save(user3);
 
            // print info of first existed objet
            User u = session.get(User.class, 11);

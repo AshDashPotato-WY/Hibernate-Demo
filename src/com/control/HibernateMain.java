@@ -39,6 +39,10 @@ public class HibernateMain {
            // print info of first existed objet
            User u = session.get(User.class, 11);
            System.out.println("The user's details: " + u);
+
+           // delete object from the user table
+           session.delete(u);
+
            // commit will help to complete the changes in the table
            transaction.commit();
            session.close();
